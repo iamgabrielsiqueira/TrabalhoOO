@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.ControllerLoginWindow"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="mainWindow">
+    <center>
+        <GridPane alignment="CENTER" vgap="10" hgap="10">
+            <Label text="Username:" fx:id="lbUsername" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="tfUsername" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <Label text="Password:" fx:id="lbPassword" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <PasswordField fx:id="tfPassword" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <Button text="Login" onAction="#login" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <Button text="Create account" onAction="#createAccount"
+                    GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+</BorderPane>
