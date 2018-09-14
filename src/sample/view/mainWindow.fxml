@@ -15,6 +15,7 @@
                     <items>
                         <MenuItem mnemonicParsing="false" text="Add category" onAction="#addCategory"/>
                         <MenuItem mnemonicParsing="false" text="Add subcategory" onAction="#addSubcategory"/>
+                        <MenuItem mnemonicParsing="false" text="Add expense" onAction="#addExpense"/>
                         <MenuItem mnemonicParsing="false" text="Logout" onAction="#logout"/>
                     </items>
                 </Menu>

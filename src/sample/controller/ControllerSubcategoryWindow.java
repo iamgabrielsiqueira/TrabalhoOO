@@ -21,13 +21,14 @@ public class ControllerSubcategoryWindow {
     public Subcategory processResult() {
 
         String name = tfSubcategoryName.getText();
+        Category category = cbCategory.getSelectionModel().getSelectedItem();
 
-        if(name.isEmpty()) {
+        if(name.isEmpty() || category == null) {
             return null;
         } else {
             Subcategory subcategory = new Subcategory();
             subcategory.setName(name);
-            subcategory.setIdCategory(1);
+            subcategory.setIdCategory(category.getId());
 
             return subcategory;
         }

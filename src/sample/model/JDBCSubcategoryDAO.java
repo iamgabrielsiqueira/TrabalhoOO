@@ -1,11 +1,20 @@
 package sample.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class JDBCSubcategoryDAO implements SubcategoryDAO {
 
     private static JDBCSubcategoryDAO instance;
+    private ObservableList<Subcategory> list;
+
+    private JDBCSubcategoryDAO(){
+        list = FXCollections.observableArrayList();
+    }
 
     public static JDBCSubcategoryDAO getInstance() {
         if(instance == null) {
@@ -29,6 +38,47 @@ public class JDBCSubcategoryDAO implements SubcategoryDAO {
 
         preparedStatement.close();
         connection.close();
+    }
+
+    private Subcategory loadSubcategory(ResultSet resultSet)throws SQLException {
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        int idCategory = resultSet.getInt("idCategory");
+
+        Subcategory subcategory = new Subcategory();
+        subcategory.setId(id);
+        subcategory.setName(name);
+        subcategory.setIdCategory(idCategory);
+
+        return subcategory;
+    }
+
+    @Override
+    public ObservableList<Subcategory> list(User user, Category category) throws Exception {
+
+        list.clear();
+
+        try {
+            Connection connection = ConnectionFactory.getConnection();
+            String sql = "select * from category where idUser = ? and where idCategory = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(2, category.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Subcategory subcategory = loadSubcategory(resultSet);
+                list.add(subcategory);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     @Override

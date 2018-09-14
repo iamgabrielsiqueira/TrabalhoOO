@@ -3,7 +3,6 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sample.model.JDBCUserDAO;
 import sample.model.User;
 
 public class ControllerCreateAccountWindow {
