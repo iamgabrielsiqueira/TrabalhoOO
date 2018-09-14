@@ -1,10 +1,10 @@
 package sample.model;
 
-public class Category {
+public class Subcategory {
 
     private int id;
     private String name;
-    private int idUser;
+    private int idCategory;
 
     public int getId() {
         return id;
@@ -22,16 +22,11 @@ public class Category {
         this.name = name;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 }
