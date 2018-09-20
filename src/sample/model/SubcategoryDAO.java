@@ -7,4 +7,5 @@ public interface SubcategoryDAO {
     ObservableList<Subcategory> list(User user, Category category) throws Exception;
     void delete(Subcategory subcategory) throws Exception;
     void update(Subcategory subcategory) throws Exception;
+    Subcategory search(int id) throws Exception;
 }

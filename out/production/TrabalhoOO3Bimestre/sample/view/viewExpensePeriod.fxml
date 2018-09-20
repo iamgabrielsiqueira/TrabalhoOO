@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.ControllerExpensePeriod"
+            prefHeight="500.0" prefWidth="575.0"
+            fx:id="mainWindow">
+    <center>
+        <GridPane alignment="CENTER" vgap="10" hgap="10" minWidth="400" maxWidth="400">
+            <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" spacing="10">
+                <HBox alignment="CENTER_LEFT">
+                    <Text text="Expense per period"/>
+                </HBox>
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Date 1:"/>
+                        <DatePicker fx:id="tfDate1"/>
+                    </VBox>
+                    <VBox>
+                        <Label text="Date 2:"/>
+                        <DatePicker fx:id="tfDate2"/>
+                    </VBox>
+                </HBox>
+                <ListView fx:id="ltvwExpensePeriod" />
+            </VBox>
+            <Button alignment="TOP_RIGHT" onAction="#getBack" text="Back"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+</BorderPane>

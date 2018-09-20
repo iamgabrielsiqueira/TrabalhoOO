@@ -77,6 +77,36 @@ public class JDBCCategoryDAO implements CategoryDAO {
         return list;
     }
 
+    public ObservableList<Category> listCb(User user) throws Exception {
+
+        list.clear();
+
+        Category categoryAll = new Category();
+        categoryAll.setName("All");
+
+        list.add(categoryAll);
+
+        try {
+            Connection connection = ConnectionFactory.getConnection();
+            String sql = "select * from category where idUser = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, user.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Category category = loadCategory(resultSet);
+                list.add(category);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return list;
+    }
 
     @Override
     public void delete(Category category) throws Exception {
@@ -86,5 +116,23 @@ public class JDBCCategoryDAO implements CategoryDAO {
     @Override
     public void update(Category category) throws Exception {
 
+    }
+
+    @Override
+    public Category search(int id) throws Exception {
+        Connection connection = ConnectionFactory.getConnection();
+        String sql = "select * from category where id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+        Category category = loadCategory(resultSet);
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+
+        return category;
     }
 }

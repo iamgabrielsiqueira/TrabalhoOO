@@ -1,19 +1,19 @@
 package sample.controller;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sample.model.Category;
-import sample.model.JDBCCategoryDAO;
-import sample.model.JDBCSubcategoryDAO;
-import sample.model.Subcategory;
+import sample.model.*;
+
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.Optional;
 
 public class ControllerMainWindow {
@@ -22,9 +22,126 @@ public class ControllerMainWindow {
     public Parent mainWindow;
 
     @FXML
+    private TableView<Expense> tbExpenses;
+
+    @FXML
+    private TableColumn<Expense, Integer> tcCategory;
+
+    @FXML
+    private TableColumn<Expense, Integer> tcSubcategory;
+
+    @FXML
+    private TableColumn<Expense, Date> tcDate;
+
+    @FXML
+    private TableColumn<Expense, Double> tcCost;
+
+    @FXML
+    private ComboBox<Category> cbCategory;
+
+    private ObservableList<Category> categoryList;
+
+    private User user;
+
+    @FXML
+    private Label lbTotal;
+
+    private Double total;
+
+    private String stringTotal;
+
+    @FXML
+    private void switchCategory() throws Exception {
+        Category category = cbCategory.getSelectionModel().getSelectedItem();
+        if(category != null) {
+            if(category.getName().equals("All")) {
+                tbExpenses.getItems().clear();
+                tbExpenses.setItems(JDBCExpenseDAO.getInstance().list(user));
+
+                total = JDBCExpenseDAO.getInstance().getTotalExpense(user);
+                DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+                if(total == null || total == 0) {
+                    stringTotal = "Total expenditure: R$0.00";
+                } else {
+                    stringTotal = "Total expenditure: R$" + numberFormat.format(total);
+                }
+
+                lbTotal.setText(stringTotal);
+            } else {
+                tbExpenses.getItems().clear();
+                tbExpenses.setItems(JDBCExpenseDAO.getInstance().listCategory(user, category));
+
+                total = JDBCExpenseDAO.getInstance().getTotalExpenseCategory(user, category);
+                DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+                if(total == null || total == 0) {
+                    stringTotal = "Total expenditure: R$0.00";
+                } else {
+                    stringTotal = "Total expenditure: R$" + numberFormat.format(total);
+                }
+
+                lbTotal.setText(stringTotal);
+            }
+
+
+        }
+    }
+
+    @FXML
+    public void expensePeriod() {
+        switchWindow("../view/viewExpensePeriod.fxml");
+    }
+
+    @FXML
     private void logout() {
         ControllerLoginWindow.user = null;
         switchWindow("../view/loginWindow.fxml");
+    }
+
+    public void initialize() throws Exception {
+
+        user = ControllerLoginWindow.user;
+
+        total = JDBCExpenseDAO.getInstance().getTotalExpense(user);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+        if(total == null || total == 0) {
+            stringTotal = "Total expenditure: R$0.00";
+        } else {
+            stringTotal = "Total expenditure: R$" + numberFormat.format(total);
+        }
+
+        lbTotal.setText(stringTotal);
+
+        try {
+            categoryList = JDBCCategoryDAO.getInstance().listCb(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        cbCategory.setItems(categoryList);
+
+        tcCategory.setCellValueFactory(new PropertyValueFactory<>("Category"));
+        tcSubcategory.setCellValueFactory(new PropertyValueFactory<>("Subcategory"));
+        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+
+        tcCost.setStyle("-fx-alignment: CENTER;");
+        tcDate.setStyle("-fx-alignment: CENTER;");
+        tcSubcategory.setStyle("-fx-alignment: CENTER;");
+        tcCategory.setStyle("-fx-alignment: CENTER;");
+
+        reloadList();
+    }
+
+    private void reloadList() {
+        try {
+            tbExpenses.getItems().clear();
+            tbExpenses.setItems(JDBCExpenseDAO.getInstance().list(user));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void switchWindow(String address){
@@ -65,23 +182,25 @@ public class ControllerMainWindow {
 
             Optional<ButtonType> result = dialog.showAndWait();
 
-            /*if(result.isPresent() && result.get()==ButtonType.OK) {
-                ControllerCategoryWindow controllerCategoryWindow = fxmlLoader.getController();
+            if(result.isPresent() && result.get()==ButtonType.OK) {
+                ControllerExpenseWindow controllerExpenseWindow = fxmlLoader.getController();
 
-                Category category = controllerCategoryWindow.processResult();
+                Expense expense = controllerExpenseWindow.processResult();
 
-                if(category!=null) {
+                if(expense!=null) {
                     try {
-                        JDBCCategoryDAO.getInstance().create(category);
-                        message(Alert.AlertType.INFORMATION, "Category created!");
+                        JDBCExpenseDAO.getInstance().create(expense);
+                        message(Alert.AlertType.INFORMATION, "Expense added!");
                     } catch (Exception e) {
-                        message(Alert.AlertType.ERROR, "This category already exists!");
+                        message(Alert.AlertType.ERROR, "Can't register this expense!");
                     }
                 } else {
                     message(Alert.AlertType.ERROR, "Error!");
                 }
 
-            }*/
+                reloadList();
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -119,6 +238,8 @@ public class ControllerMainWindow {
                 } else {
                     message(Alert.AlertType.ERROR, "Error!");
                 }
+
+                reloadList();
 
             }
         } catch (IOException e) {
@@ -158,6 +279,8 @@ public class ControllerMainWindow {
                 } else {
                     message(Alert.AlertType.ERROR, "Error!");
                 }
+
+                reloadList();
 
             }
         } catch (IOException e) {

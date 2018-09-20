@@ -7,4 +7,5 @@ public interface CategoryDAO {
     ObservableList<Category> list(User user) throws Exception;
     void delete(Category category) throws Exception;
     void update(Category category) throws Exception;
+    Category search(int id) throws Exception;
 }

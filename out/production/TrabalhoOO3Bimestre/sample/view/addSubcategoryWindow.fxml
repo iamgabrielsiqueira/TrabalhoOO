@@ -3,18 +3,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-
 <?import javafx.scene.control.ComboBox?>
-<BorderPane xmlns="http://javafx.com/javafx"
+
+<?import javafx.scene.control.DialogPane?>
+<DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.controller.ControllerSubcategoryWindow"
-            prefHeight="200.0" prefWidth="300.0">
-    <center>
-        <GridPane alignment="CENTER" vgap="10" hgap="10">
-            <Label text="Category:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-            <ComboBox fx:id="cbCategory" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-            <Label text="Subcategory name:" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-            <TextField fx:id="tfSubcategoryName" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-        </GridPane>
-    </center>
-</BorderPane>
+            prefHeight="200.0" prefWidth="300.0" fx:id="mainWindow">
+    <content>
+        <BorderPane>
+            <center>
+                <GridPane alignment="CENTER" vgap="10" hgap="10">
+                    <Label text="Category:" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <ComboBox fx:id="cbCategory" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Subcategory name:" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <TextField fx:id="tfSubcategoryName" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+            </center>
+        </BorderPane>
+    </content>
+</DialogPane>

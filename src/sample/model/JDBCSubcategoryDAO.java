@@ -60,10 +60,10 @@ public class JDBCSubcategoryDAO implements SubcategoryDAO {
 
         try {
             Connection connection = ConnectionFactory.getConnection();
-            String sql = "select * from category where idUser = ? and where idCategory = ?";
+            String sql = "select * from subcategory where idCategory = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setInt(2, category.getId());
+            //preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(1, category.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
@@ -89,5 +89,23 @@ public class JDBCSubcategoryDAO implements SubcategoryDAO {
     @Override
     public void update(Subcategory subcategory) throws Exception {
 
+    }
+
+    @Override
+    public Subcategory search(int id) throws Exception {
+        Connection connection = ConnectionFactory.getConnection();
+        String sql = "select * from subcategory where id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+        Subcategory subcategory = loadSubcategory(resultSet);
+
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+
+        return subcategory;
     }
 }

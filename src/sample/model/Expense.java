@@ -1,15 +1,24 @@
 package sample.model;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Date;
 
 public class Expense {
 
     private int id;
     private Date date;
-    private Double cost;
-    private int idCategory;
-    private int idSubcategory;
-    private int idUser;
+    private SimpleDoubleProperty cost;
+    private Category category;
+    private Subcategory subcategory;
+    private SimpleIntegerProperty idUser;
+
+    public Expense() {
+        cost = new SimpleDoubleProperty();
+        category = new Category();
+        subcategory = new Subcategory();
+        idUser = new SimpleIntegerProperty();
+    }
 
     public int getId() {
         return id;
@@ -27,36 +36,43 @@ public class Expense {
         this.date = date;
     }
 
-    public Double getCost() {
+    public double getCost() {
+        return cost.get();
+    }
+
+    public SimpleDoubleProperty costProperty() {
         return cost;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
-    public int getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public int getIdSubcategory() {
-        return idSubcategory;
-    }
-
-    public void setIdSubcategory(int idSubcategory) {
-        this.idSubcategory = idSubcategory;
+    public void setCost(double cost) {
+        this.cost.set(cost);
     }
 
     public int getIdUser() {
+        return idUser.get();
+    }
+
+    public SimpleIntegerProperty idUserProperty() {
         return idUser;
     }
 
     public void setIdUser(int idUser) {
-        this.idUser = idUser;
+        this.idUser.set(idUser);
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Subcategory getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(Subcategory subcategory) {
+        this.subcategory = subcategory;
+    }
 }

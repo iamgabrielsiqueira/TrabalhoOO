@@ -1,5 +1,6 @@
 package sample.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -36,7 +37,8 @@ public class ControllerSubcategoryWindow {
     }
 
     public void initialize() throws Exception {
-        categoryList = JDBCCategoryDAO.getInstance().list(ControllerLoginWindow.user);
+        categoryList = FXCollections.observableArrayList(JDBCCategoryDAO.getInstance().listCb(ControllerLoginWindow.user));
+        categoryList.remove(0);
         cbCategory.setItems(categoryList);
     }
 
