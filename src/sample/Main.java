@@ -13,6 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/loginWindow.fxml"));
         primaryStage.setTitle("Expense Manager");
         primaryStage.setScene(new Scene(root, 500, 575));
+        primaryStage.getScene().getStylesheets().add("skin.css");
         primaryStage.show();
     }
 

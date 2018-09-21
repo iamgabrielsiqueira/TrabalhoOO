@@ -90,6 +90,33 @@ public class JDBCExpenseDAO implements ExpenseDAO {
         return list;
     }
 
+    public ObservableList<Expense> listPeriod(User user, Date date1) throws Exception {
+
+        list.clear();
+
+        try {
+            Connection connection = ConnectionFactory.getConnection();
+            String sql = "select * from expense where idUser = ? and date = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setDate(2, date1);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Expense expense = loadExpense(resultSet);
+                list.add(expense);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
     public ObservableList<Expense> listCategory(User user, Category category) throws Exception {
 
         list.clear();

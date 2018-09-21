@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.text.Text?>
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.controller.ControllerExpensePeriod"
@@ -22,7 +22,7 @@
                     </VBox>
                     <VBox>
                         <Label text="Date 2:"/>
-                        <DatePicker fx:id="tfDate2"/>
+                        <DatePicker fx:id="tfDate2" onAction="#filter"/>
                     </VBox>
                 </HBox>
                 <ListView fx:id="ltvwExpensePeriod" />

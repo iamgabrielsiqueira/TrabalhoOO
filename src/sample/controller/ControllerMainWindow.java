@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import sample.model.*;
-
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Date;
@@ -126,6 +125,19 @@ public class ControllerMainWindow {
         tcSubcategory.setCellValueFactory(new PropertyValueFactory<>("Subcategory"));
         tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         tcCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+
+        tcCost.setCellFactory(tc -> new TableCell<Expense, Double>() {
+
+            @Override
+            protected void updateItem(Double cost, boolean empty) {
+                super.updateItem(cost, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText("R$" + String.valueOf(cost));
+                }
+            }
+        });
 
         tcCost.setStyle("-fx-alignment: CENTER;");
         tcDate.setStyle("-fx-alignment: CENTER;");

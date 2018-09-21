@@ -16,8 +16,8 @@ import javafx.util.Callback;
 import sample.model.Expense;
 import sample.model.JDBCExpenseDAO;
 import sample.model.User;
-
 import java.io.IOException;
+import java.sql.Date;
 
 public class ControllerExpensePeriod {
 
@@ -33,6 +33,39 @@ public class ControllerExpensePeriod {
 
     @FXML
     public Parent mainWindow;
+
+    @FXML
+    private DatePicker tfDate2;
+
+    @FXML
+    private DatePicker tfDate1;
+
+    @FXML
+    public void filter() throws Exception {
+
+        user = ControllerLoginWindow.user;
+
+        if(tfDate1.getValue() == null && tfDate2.getValue() != null) {
+            lista.clear();
+            lista = JDBCExpenseDAO.getInstance().listPeriod(user, Date.valueOf(tfDate2.getValue()));
+            ltvwExpensePeriod.getItems().clear();
+            ltvwExpensePeriod.setItems(lista);
+            System.out.println("Não marcou");
+            System.out.println(tfDate2.getValue());
+
+        }
+
+        if(tfDate1.getValue() != null && tfDate2.getValue() == null) {
+            System.out.println(tfDate1.getValue());
+            System.out.println("Não marcou");
+        }
+
+        if(tfDate1.getValue() != null && tfDate2.getValue() != null) {
+            System.out.println(tfDate1.getValue());
+            System.out.println(tfDate2.getValue());
+        }
+
+    }
 
     public void initialize() throws Exception {
 
@@ -68,7 +101,7 @@ public class ControllerExpensePeriod {
                         if(empty){
                             setText(null);
                         }else{
-                            setText(String.valueOf(item.getCost()));
+                            setText("R$" + String.valueOf(item.getCost()));
                         }
                     }
                 };
