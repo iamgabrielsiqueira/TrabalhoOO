@@ -174,6 +174,26 @@ public class ControllerMainWindow {
             }
         });
 
+        mi1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Expense expense = tbExpenses.getSelectionModel().getSelectedItem();
+                try {
+                    update(expense);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        mi2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Expense expense = tbExpenses.getSelectionModel().getSelectedItem();
+                remove(expense);
+            }
+        });
+
         mi3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -183,6 +203,62 @@ public class ControllerMainWindow {
         });
 
         reloadList();
+    }
+
+    public void update(Expense expense) throws Exception {
+        Dialog<ButtonType> dialog = new Dialog();
+        dialog.setTitle("Update Expense");
+
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../view/updateExpenseWindow.fxml"));
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+
+            ControllerUpdateExpense controle = fxmlLoader.getController();
+
+            controle.setDados(expense);
+
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if(result.isPresent() && result.get()==ButtonType.OK){
+
+                Expense j = controle.processResult();
+
+                if(j!=null){
+                    try {
+                        JDBCExpenseDAO.getInstance().update(expense, j);
+                        message(Alert.AlertType.INFORMATION, "Done!");
+                        reloadList();
+                    } catch (Exception e){
+                        message(Alert.AlertType.ERROR,e.getMessage());
+                    }
+                }else{
+                    message(Alert.AlertType.ERROR,"Invalid data!!!");
+                }
+
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void remove(Expense expense) {
+        if(expense!=null){
+            try {
+                JDBCExpenseDAO.getInstance().delete(expense);
+                reloadList();
+            } catch (Exception e){
+                message(Alert.AlertType.ERROR,e.getMessage());
+            }
+        }else{
+            message(Alert.AlertType.ERROR,"Invalid data!!!");
+        }
+
     }
 
     public void setasDone(Expense expense) {

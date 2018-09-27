@@ -159,12 +159,38 @@ public class JDBCExpenseDAO implements ExpenseDAO {
 
     @Override
     public void delete(Expense expense) throws Exception {
+        String sql = "delete from expense where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+        statement.setInt(1, expense.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     @Override
-    public void update(Expense expense) throws Exception {
+    public void update(Expense expense, Expense j) throws Exception {
+        String sql = "update expense set date=?, cost=?, idCategory=?, idSubcategory=?, " +
+                "status=? where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+        Date newDate = (Date) j.getDate();
+
+        statement.setDate(1, newDate);
+        statement.setDouble(2, j.getCost());
+        statement.setInt(3, j.getCategory().getId());
+        statement.setInt(4, j.getSubcategory().getId());
+        statement.setInt(5, j.getStatus());
+        statement.setInt(6, expense.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     public void updateStatus(Expense expense) throws Exception {

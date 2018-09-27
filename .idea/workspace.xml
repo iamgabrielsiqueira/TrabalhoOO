@@ -2,29 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/database.sqlite" afterPath="$PROJECT_DIR$/database.sqlite" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$1.class" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$2$1.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$2$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$2.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod$3.class" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod.class" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerExpensePeriod.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow$1.class" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow$2.class" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow$2.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow.class" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/controller/ControllerMainWindow.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/view/viewExpensePeriod.fxml" afterPath="$PROJECT_DIR$/out/production/TrabalhoOO3Bimestre/sample/view/viewExpensePeriod.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/controller/ControllerExpenseDay.java" afterPath="$PROJECT_DIR$/src/sample/controller/ControllerExpenseDay.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/controller/ControllerExpensePeriod.java" afterPath="$PROJECT_DIR$/src/sample/controller/ControllerExpensePeriod.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/controller/ControllerExpenseWindow.java" afterPath="$PROJECT_DIR$/src/sample/controller/ControllerExpenseWindow.java" />
+      <change beforePath="$PROJECT_DIR$/bank.sqlite" afterPath="$PROJECT_DIR$/bank.sqlite" />
       <change beforePath="$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java" afterPath="$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/ConnectionFactory.java" afterPath="$PROJECT_DIR$/src/sample/model/ConnectionFactory.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/model/Expense.java" afterPath="$PROJECT_DIR$/src/sample/model/Expense.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/model/ExpenseDAO.java" afterPath="$PROJECT_DIR$/src/sample/model/ExpenseDAO.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java" afterPath="$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/view/addExpenseWindow.fxml" afterPath="$PROJECT_DIR$/src/sample/view/addExpenseWindow.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/view/mainWindow.fxml" afterPath="$PROJECT_DIR$/src/sample/view/mainWindow.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/view/viewExpenseDay.fxml" afterPath="$PROJECT_DIR$/src/sample/view/viewExpenseDay.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/view/viewExpensePeriod.fxml" afterPath="$PROJECT_DIR$/src/sample/view/viewExpensePeriod.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,7 +94,6 @@
         <option value="$PROJECT_DIR$/src/sample/model/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/sample/view/loginWindow.fxml" />
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerLoginWindow.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/ExpenseDAO.java" />
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerCategoryWindow.java" />
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerCreateAccountWindow.java" />
         <option value="$PROJECT_DIR$/src/sample/model/Category.java" />
@@ -137,10 +117,13 @@
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerExpensePeriod.java" />
         <option value="$PROJECT_DIR$/src/sample/view/setDoneWindow.fxml" />
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerSetDone.java" />
-        <option value="$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java" />
-        <option value="$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java" />
         <option value="$PROJECT_DIR$/src/sample/view/addExpenseWindow.fxml" />
         <option value="$PROJECT_DIR$/src/sample/controller/ControllerExpenseWindow.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/ExpenseDAO.java" />
+        <option value="$PROJECT_DIR$/src/sample/view/updateExpenseWindow.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/controller/ControllerUpdateExpense.java" />
+        <option value="$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java" />
+        <option value="$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java" />
       </list>
     </option>
   </component>
@@ -450,20 +433,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/sample/controller/ControllerExpensePeriod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2619#2980#0" expanded="true" />
-            <element signature="e#2979#2980#0" expanded="true" />
-            <element signature="e#3510#3511#0" expanded="true" />
-            <element signature="e#3565#3566#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1782">
@@ -669,14 +638,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/model/SubcategoryDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/ExpenseDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
@@ -938,29 +899,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/model/ExpenseDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="208" column="73" lean-forward="true" selection-start-line="208" selection-start-column="73" selection-end-line="208" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2706#2707#0" expanded="true" />
-            <element signature="e#2768#2769#0" expanded="true" />
-            <element signature="e#2811#2812#0" expanded="true" />
-            <element signature="e#2870#2871#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/view/updateExpenseWindow.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="176" column="31" lean-forward="true" selection-start-line="176" selection-start-column="31" selection-end-line="176" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#294#295#0" expanded="true" />
-            <element signature="e#352#353#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="218">
+          <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -969,18 +923,54 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="27" column="46" lean-forward="false" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="46" />
+        <state relative-caret-position="432">
+          <caret line="30" column="21" lean-forward="true" selection-start-line="15" selection-start-column="8" selection-end-line="30" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/controller/ControllerExpenseWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="59">
+          <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="62" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/model/JDBCExpenseDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="170" column="18" lean-forward="false" selection-start-line="170" selection-start-column="18" selection-end-line="170" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#294#295#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/controller/ControllerUpdateExpense.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/controller/ControllerMainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4392">
+          <caret line="248" column="0" lean-forward="true" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2706#2707#0" expanded="true" />
+            <element signature="e#2768#2769#0" expanded="true" />
+            <element signature="e#2811#2812#0" expanded="true" />
+            <element signature="e#2870#2871#0" expanded="true" />
           </folding>
         </state>
       </provider>
