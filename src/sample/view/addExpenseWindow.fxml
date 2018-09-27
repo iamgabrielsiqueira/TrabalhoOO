@@ -7,6 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.DialogPane?>
 
+<?import javafx.scene.control.CheckBox?>
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.controller.ControllerExpenseWindow"
@@ -24,6 +25,7 @@
                     <TextField fx:id="tfCost" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
                     <Label text="Date:" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
                     <DatePicker fx:id="tfDate" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                    <CheckBox fx:id="checkBox1" text="Already done!" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
                 </GridPane>
             </center>
         </BorderPane>

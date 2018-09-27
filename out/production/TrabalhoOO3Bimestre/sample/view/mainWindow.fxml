@@ -22,7 +22,7 @@
                 <Menu mnemonicParsing="false" text="Expenses">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Per period" onAction="#expensePeriod"/>
-                        <MenuItem mnemonicParsing="false" text="Next days" onAction="#addSubcategory"/>
+                        <MenuItem mnemonicParsing="false" text="Next days" onAction="#expenseDays"/>
                     </items>
                 </Menu>
             </menus>

@@ -24,8 +24,8 @@ public class JDBCExpenseDAO implements ExpenseDAO {
     public void create(Expense expense) throws Exception {
         Connection connection = ConnectionFactory.getConnection();
 
-        String sql = "insert into expense(date, cost, idCategory, idSubcategory, idUser) " +
-                "values(?, ?, ?, ?, ?)";
+        String sql = "insert into expense(date, cost, idCategory, idSubcategory, idUser, status) " +
+                "values(?, ?, ?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -34,7 +34,7 @@ public class JDBCExpenseDAO implements ExpenseDAO {
         preparedStatement.setInt(3, expense.getCategory().getId());
         preparedStatement.setInt(4, expense.getSubcategory().getId());
         preparedStatement.setInt(5, expense.getIdUser());
-
+        preparedStatement.setInt(6, expense.getStatus());
         preparedStatement.execute();
 
         preparedStatement.close();
@@ -48,6 +48,7 @@ public class JDBCExpenseDAO implements ExpenseDAO {
         int idCategory = resultSet.getInt("idCategory");
         int idSubcategory = resultSet.getInt("idSubcategory");
         int idUser = resultSet.getInt("idUser");
+        int status = resultSet.getInt("status");
 
         Category category = JDBCCategoryDAO.getInstance().search(idCategory);
         Subcategory subcategory = JDBCSubcategoryDAO.getInstance().search(idSubcategory);
@@ -59,6 +60,7 @@ public class JDBCExpenseDAO implements ExpenseDAO {
         expense.setCategory(category);
         expense.setSubcategory(subcategory);
         expense.setIdUser(idUser);
+        expense.setStatus(status);
 
         return expense;
     }
@@ -73,33 +75,6 @@ public class JDBCExpenseDAO implements ExpenseDAO {
             String sql = "select * from expense where idUser = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, user.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                Expense expense = loadExpense(resultSet);
-                list.add(expense);
-            }
-
-            resultSet.close();
-            preparedStatement.close();
-            connection.close();
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return list;
-    }
-
-    public ObservableList<Expense> listPeriod(User user, Date date1) throws Exception {
-
-        list.clear();
-
-        try {
-            Connection connection = ConnectionFactory.getConnection();
-            String sql = "select * from expense where idUser = ? and date = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setDate(2, date1);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
@@ -189,6 +164,22 @@ public class JDBCExpenseDAO implements ExpenseDAO {
 
     @Override
     public void update(Expense expense) throws Exception {
+
+    }
+
+    public void updateStatus(Expense expense) throws Exception {
+
+        String sql = "update expense set status=? where id=?";
+
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+        statement.setInt(1, 1);
+        statement.setInt(2, expense.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
 
     }
 }

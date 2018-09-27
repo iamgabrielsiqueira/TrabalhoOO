@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
 
-<DialogPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.controller.ControllerExpenseDay"
-            prefHeight="400.0" prefWidth="600.0">
-    <content>
-
-    </content>
-</DialogPane>
+            prefHeight="500.0" prefWidth="575.0"
+            fx:id="mainWindow">
+    <center>
+        <GridPane alignment="CENTER" vgap="10" hgap="10" minWidth="450" maxWidth="450">
+            <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" spacing="10">
+                <HBox alignment="CENTER_LEFT">
+                    <Text text="Expense of next days"/>
+                </HBox>
+                <HBox spacing="10">
+                    <VBox>
+                        <TextField fx:id="tfDate" maxWidth="100" minWidth="100"/>
+                    </VBox>
+                    <VBox>
+                        <Button text="Filter" onAction="#filter"/>
+                    </VBox>
+                </HBox>
+                <GridPane>
+                    <TableView GridPane.rowIndex="1" GridPane.columnIndex="0" minWidth="450" fx:id="tbExpenses">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn text="Category" fx:id="tcCategory" />
+                            <TableColumn text="Subcategory" fx:id="tcSubcategory" minWidth="70"/>
+                            <TableColumn text="Date" fx:id="tcDate"/>
+                            <TableColumn text="Cost" fx:id="tcCost" minWidth="70" maxWidth="70"/>
+                        </columns>
+                    </TableView>
+                    <Label fx:id="lbTotal" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                </GridPane>
+            </VBox>
+            <Button alignment="TOP_RIGHT" onAction="#getBack" text="Back"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+</BorderPane>

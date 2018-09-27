@@ -2,12 +2,16 @@ package sample.controller;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import sample.model.*;
 import java.io.IOException;
@@ -93,6 +97,11 @@ public class ControllerMainWindow {
     }
 
     @FXML
+    public void expenseDays() {
+        switchWindow("../view/viewExpenseDay.fxml");
+    }
+
+    @FXML
     private void logout() {
         ControllerLoginWindow.user = null;
         switchWindow("../view/loginWindow.fxml");
@@ -144,7 +153,76 @@ public class ControllerMainWindow {
         tcSubcategory.setStyle("-fx-alignment: CENTER;");
         tcCategory.setStyle("-fx-alignment: CENTER;");
 
+        ContextMenu cm = new ContextMenu();
+
+        MenuItem mi1 = new MenuItem("Edit");
+        cm.getItems().add(mi1);
+
+        MenuItem mi2 = new MenuItem("Remove");
+        cm.getItems().add(mi2);
+
+        MenuItem mi3 = new MenuItem("Set as Done");
+        cm.getItems().add(mi3);
+
+        tbExpenses.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent t) {
+                if(t.getButton() == MouseButton.SECONDARY) {
+                    cm.show(tbExpenses, t.getScreenX(), t.getScreenY());
+                }
+            }
+        });
+
+        mi3.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Expense expense = tbExpenses.getSelectionModel().getSelectedItem();
+                setasDone(expense);
+            }
+        });
+
         reloadList();
+    }
+
+    public void setasDone(Expense expense) {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setTitle("Set as done");
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../view/setDoneWindow.fxml"));
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            ControllerSetDone controllerSetDone = fxmlLoader.getController();
+            controllerSetDone.setDados(expense);
+
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if(result.isPresent() && result.get()==ButtonType.OK) {
+                boolean ok = controllerSetDone.processResult();
+
+                if(ok) {
+                    try {
+                        JDBCExpenseDAO.getInstance().updateStatus(expense);
+                        message(Alert.AlertType.INFORMATION, "Done!");
+                    } catch (Exception e) {
+                        message(Alert.AlertType.ERROR, "Can't set this expense!");
+                    }
+                } else {
+                    message(Alert.AlertType.ERROR, "Error!");
+                }
+                reloadList();
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void reloadList() {

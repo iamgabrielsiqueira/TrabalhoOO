@@ -12,12 +12,14 @@ public class Expense {
     private Category category;
     private Subcategory subcategory;
     private SimpleIntegerProperty idUser;
+    private SimpleIntegerProperty status;
 
     public Expense() {
         cost = new SimpleDoubleProperty();
         category = new Category();
         subcategory = new Subcategory();
         idUser = new SimpleIntegerProperty();
+        status = new SimpleIntegerProperty();
     }
 
     public int getId() {
@@ -74,5 +76,17 @@ public class Expense {
 
     public void setSubcategory(Subcategory subcategory) {
         this.subcategory = subcategory;
+    }
+
+    public int getStatus() {
+        return status.get();
+    }
+
+    public SimpleIntegerProperty statusProperty() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status.set(status);
     }
 }

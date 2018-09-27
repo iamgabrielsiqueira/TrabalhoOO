@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
     private static Connection[] pool;
-    private static String CONNECTION_STR = "jdbc:sqlite:database.sqlite";
+    private static String CONNECTION_STR = "jdbc:sqlite:bank.sqlite";
     private static int MAX_CONNECTIONS=5;
 
     static {

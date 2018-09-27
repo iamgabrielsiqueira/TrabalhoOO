@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.DialogPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.ControllerSetDone"
+            prefHeight="350.0" prefWidth="300.0" fx:id="mainWindow">
+    <content>
+        <BorderPane>
+            <center>
+                <GridPane alignment="CENTER" vgap="10" hgap="10">
+                    <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="10" alignment="CENTER">
+                        <Label >
+                            Do you want to set it as done?
+                        </Label>
+                        <Text fx:id="lbCategory">
+                            Category:
+                        </Text>
+                        <Text fx:id="lbSubcategory">
+                            Subcategory:
+                        </Text>
+                        <Text fx:id="lbCost">
+                            Cost:
+                        </Text>
+                    </VBox>
+                </GridPane>
+            </center>
+        </BorderPane>
+    </content>
+</DialogPane>

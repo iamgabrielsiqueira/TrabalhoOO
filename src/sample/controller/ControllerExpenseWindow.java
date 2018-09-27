@@ -3,6 +3,7 @@ package sample.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -27,7 +28,12 @@ public class ControllerExpenseWindow {
     @FXML
     private TextField tfCost;
 
+    @FXML
+    private CheckBox checkBox1;
+
+
     User user = ControllerLoginWindow.user;
+
 
     public Expense processResult() {
 
@@ -45,6 +51,12 @@ public class ControllerExpenseWindow {
             expense.setCategory(category);
             expense.setSubcategory(subcategory);
             expense.setIdUser(user.getId());
+
+            if(checkBox1.isSelected()) {
+                expense.setStatus(1);
+            } else {
+                expense.setStatus(0);
+            }
 
             System.out.println(data);
 
