@@ -83,12 +83,32 @@ public class JDBCSubcategoryDAO implements SubcategoryDAO {
 
     @Override
     public void delete(Subcategory subcategory) throws Exception {
+        String sql = "delete from subcategory where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+        statement.setInt(1, subcategory.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     @Override
-    public void update(Subcategory subcategory) throws Exception {
+    public void update(Subcategory subcategory, Subcategory j) throws Exception {
+        String sql = "update subcategory set name=? where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+
+        statement.setString(1, j.getName());
+        statement.setInt(2, subcategory.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     @Override

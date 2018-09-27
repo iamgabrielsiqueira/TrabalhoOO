@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.controller.ControllerSubcategoryAll"
+            prefHeight="500.0" prefWidth="575.0"
+            fx:id="mainWindow">
+    <center>
+        <GridPane alignment="CENTER" vgap="10" hgap="10" minWidth="450" maxWidth="450">
+            <VBox alignment="CENTER" GridPane.rowIndex="0" GridPane.columnIndex="0" spacing="10">
+                <HBox alignment="CENTER_LEFT">
+                    <Text text="Category"/>
+                </HBox>
+                <GridPane>
+                    <TableView GridPane.rowIndex="1" GridPane.columnIndex="0" minWidth="450" fx:id="tbSubcategory">
+                        <columnResizePolicy>
+                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                        </columnResizePolicy>
+                        <columns>
+                            <TableColumn text="ID" fx:id="tcId" />
+                            <TableColumn text="Name" fx:id="tcName"/>
+                        </columns>
+                    </TableView>
+                </GridPane>
+            </VBox>
+            <Button alignment="TOP_RIGHT" onAction="#getBack" text="Back"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+</BorderPane>

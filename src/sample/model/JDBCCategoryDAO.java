@@ -110,12 +110,32 @@ public class JDBCCategoryDAO implements CategoryDAO {
 
     @Override
     public void delete(Category category) throws Exception {
+        String sql = "delete from category where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+        statement.setInt(1, category.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     @Override
-    public void update(Category category) throws Exception {
+    public void update(Category category, Category j) throws Exception {
+        String sql = "update category set name=? where id=?";
 
+        Connection c = ConnectionFactory.getConnection();
+        PreparedStatement statement = c.prepareStatement(sql);
+
+
+        statement.setString(1, j.getName());
+        statement.setInt(2, category.getId());
+
+        statement.execute();
+        statement.close();
+        c.close();
     }
 
     @Override

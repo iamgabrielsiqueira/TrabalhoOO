@@ -8,7 +8,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import sample.model.*;
-
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;

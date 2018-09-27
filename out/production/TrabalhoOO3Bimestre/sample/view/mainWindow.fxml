@@ -25,6 +25,16 @@
                         <MenuItem mnemonicParsing="false" text="Next days" onAction="#expenseDays"/>
                     </items>
                 </Menu>
+                <Menu mnemonicParsing="false" text="Category">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="List all" onAction="#listCategoryAll"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Subcategory" onAction="#listSubcategoryAll">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="List all" />
+                    </items>
+                </Menu>
             </menus>
         </MenuBar>
     </top>

@@ -457,6 +457,16 @@ public class ControllerMainWindow {
         }
     }
 
+    @FXML
+    public void listCategoryAll() {
+        switchWindow("../view/viewCategoryAll.fxml");
+    }
+
+    @FXML
+    public void listSubcategoryAll() {
+        switchWindow("../view/viewSubcategoryAll.fxml");
+    }
+
     protected void message(Alert.AlertType type, String message) {
         Alert alert = new Alert(type);
         alert.setTitle("Message!");
